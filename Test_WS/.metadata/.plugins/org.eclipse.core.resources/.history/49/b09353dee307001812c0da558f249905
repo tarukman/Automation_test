@@ -1,0 +1,114 @@
+package com.jdquote.qa.pages;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+
+import com.jdquote.qa.base.TestBase;
+import com.jdquote.qa.utils.TestUtil;
+
+public class EquipmentPage extends TestBase{
+	
+	TestUtil  utils= new TestUtil();
+
+	By equipment = By.linkText("Equipment");
+	By dbs= By.xpath("//a[contains(text(),'DBS')]");
+	By searchDBS= By.xpath("//input[@id='dbsSearch']");
+	By MakeforDBS=By.id("selectedMakeIdForDBS");
+	By categoryforDBS=By.name("selectedCategoryIdForDBS");
+	By selectFirstDBS= By.xpath("//div[@id='results']/table/tbody/tr[1]/td[1]/input[@id='dBSEquipId']");
+	By dbsEquipModel=By.xpath("//div[@id='results']/table/tbody/tr[1]/td[8]");
+	By addSelectedDBS= By.linkText("Add Selected");
+	By donebtn=By.xpath("//input[@type='button'and @value='Done']");
+	By collateral=By.xpath(	"//a[contains(text(),'Collateral')]");
+	By searchCollateral= By.xpath("//input[@id='Search']");
+	By selectFirstCollateral= By.xpath("//div[@id='results']/table/tbody/tr[1]/td[1]");
+	By collateralEquipModel=By.xpath("//div[@id='results']/table/tbody/tr[1]/td[8]");
+	By config=By.xpath("//a[contains(text(),'AG Config')]");
+	
+	public String visitEquipmentTab()
+	{
+		
+		driver.findElement(equipment).click();
+		return (driver.findElement(By.xpath("//form/table/tbody/tr/td/h1[contains(text(),Equipment)]")).getText());
+	}
+	
+	public String addDBSEquipment()
+	{
+		driver.findElement(equipment).click();
+		driver.findElement(dbs).click();
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+		Select selectMake = new Select (driver.findElement(MakeforDBS));
+		selectMake.selectByValue("1");
+		Select selectCategory = new Select (driver.findElement(categoryforDBS));
+		selectCategory.selectByValue("1012");
+		driver.findElement(searchDBS).click();
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		String dbsEquipmentDesc= driver.findElement(collateralEquipModel).getText();
+		driver.findElement(selectFirstDBS).click();
+		driver.findElement(addSelectedDBS).click();
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		utils.switchtoAlertAndAccept(driver);
+		driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+		driver.findElement(donebtn).click();
+		driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+		return dbsEquipmentDesc;	
+		
+	}
+	
+	public String addCollateralEquipment()
+	{
+		driver.findElement(equipment).click();
+		driver.findElement(collateral).click();
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+		driver.findElement(searchCollateral).click();
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		String collateralEquipmentDesc= driver.findElement(dbsEquipModel).getText();
+		driver.findElement(selectFirstCollateral).click();
+		driver.findElement(addSelectedDBS).click();
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		utils.switchtoAlertAndAccept(driver);
+		driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+		driver.findElement(donebtn).click();
+		driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+		return collateralEquipmentDesc;	
+		
+	}
+	
+	public String addConfigEquipment()
+	{
+		driver.findElement(equipment).click();
+		driver.findElement(dbs).click();
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+		Select selectMake = new Select (driver.findElement(MakeforDBS));
+		selectMake.selectByValue("1");
+		Select selectCategory = new Select (driver.findElement(categoryforDBS));
+		selectCategory.selectByValue("1012");
+		driver.findElement(searchDBS).click();
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		String dbsEquipmentDesc= driver.findElement(dbsEquipModel).getText();
+		driver.findElement(selectFirstDBS).click();
+		driver.findElement(addSelectedDBS).click();
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		utils.switchtoAlertAndAccept(driver);
+		driver.manage().timeouts().implicitlyWait(300, TimeUnit.SECONDS);
+		driver.findElement(donebtn).click();
+		driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+		return dbsEquipmentDesc;	
+		
+	}
+    public String verifyEquipmentOnEquipmentTab(int i)
+    {   
+    	By equipDesc= By.xpath("//table[@class='data'][3]/tbody/tr["+i+"]/td[3]");    	
+    	   	
+    	return driver.findElement(equipDesc).getText();
+    }
+
+	
+	
+	
+	
+	
+	
+}

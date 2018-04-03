@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.jdquote.qa.testcases.Summary&apos; to &apos;SummaryTest&apos;&#x0D;&#x0A;- Original project: &apos;JDQuote2Test&apos;&#x0D;&#x0A;- Original element: &apos;com.jdquote.qa.testcases.Summary&apos;&#x0D;&#x0A;- Renamed element: &apos;com.jdquote.qa.testcases.SummaryTest&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Summary&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/test\/java&lt;com.jdquote.qa.testcases{Summary.java[Summary" matchStrategy="1" name="SummaryTest" qualified="false" references="true" similarDeclarations="false" stamp="1517482258460" textual="false" version="1.0"/>
+</session>
